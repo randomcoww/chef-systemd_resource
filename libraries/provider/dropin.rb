@@ -3,8 +3,6 @@ class ChefSystemdResource
     class Dropin < Chef::Provider
       include Systemd
 
-      use_inline_resources
-
       provides :systemd_resource_dropin, os: "linux"
 
       def load_current_resource
