@@ -23,6 +23,7 @@ class ChefSystemdResource
 
       def action_create
         converge_by("Create systemd dropin: #{new_resource.name}") do
+          create_base_path
           dropin_config.run_action(:create)
           daemon_reload
         end if !current_resource.exists || current_resource.content != new_resource.content
@@ -30,6 +31,12 @@ class ChefSystemdResource
 
 
       private
+
+      def create_base_path
+        Chef::Resource::Directory.new(::File.dirname(new_resource.path), run_context).tap do |r|
+          r.recursive true
+        end.run_action(:create_if_missing)
+      end
 
       def dropin_config
         @dropin_config ||= Chef::Resource::File.new(new_resource.path, run_context).tap do |r|
