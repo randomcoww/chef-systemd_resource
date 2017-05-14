@@ -25,7 +25,7 @@ class ChefSystemdResource
         converge_by("Create systemd dropin: #{new_resource.name}") do
           dropin_config.run_action(:create)
           daemon_reload
-        end if !current_resource.exists? || current_resource.content != new_resource.content
+        end if !current_resource.exists || current_resource.content != new_resource.content
       end
 
 
