@@ -1,7 +1,7 @@
 class ChefSystemdResource
   class Provider
     class Dropin < Chef::Provider
-      include Systemd
+      include SystemdHelper
 
       provides :systemd_resource_dropin, os: "linux"
 

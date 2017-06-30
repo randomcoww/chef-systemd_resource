@@ -1,7 +1,7 @@
 class ChefSystemdResource
   class Resource
     class Dropin < Chef::Resource
-      include Systemd
+      include SystemdHelper
 
       resource_name :systemd_resource_dropin
 
@@ -18,7 +18,7 @@ class ChefSystemdResource
       private
 
       def to_conf
-        systemd_generate_config(config)
+        ConfigGenerator.generate_from_hash(config)
       end
     end
   end
