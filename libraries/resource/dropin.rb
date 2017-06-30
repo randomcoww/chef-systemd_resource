@@ -13,7 +13,7 @@ class ChefSystemdResource
       property :config, Hash
       property :content, String, default: lazy { to_conf }
       property :path, String, desired_state: false,
-                              default: lazy { ::File.join(Systemd::BASE_PATH, "#{service}.d", "#{name}.conf") }
+                              default: lazy { ::File.join(SystemdHelper::BASE_PATH, "#{service}.d", "#{name}.conf") }
 
       private
 
