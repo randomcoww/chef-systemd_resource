@@ -18,7 +18,7 @@ class ChefSystemdResource
       private
 
       def to_conf
-        to_ini(config)
+        systemd_generate_config(config)
       end
     end
   end

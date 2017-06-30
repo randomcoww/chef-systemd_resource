@@ -5,11 +5,11 @@ module Systemd
   BASE_PATH ||= "/etc/systemd/system"
 
 
-  def daemon_reload
+  def systemd_daemon_reload
     shell_out_with_systems_locale!("#{systemctl_path} daemon-reload")
   end
 
-  def to_ini(c)
+  def systemd_generate_config(c)
     ini_sections(c).join($/)
   end
 
